@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to 21:45</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .countdown-container {
+            text-align: center;
+            background: #1e1e1e;
+            padding: 30px 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: #aaaaaa;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #timer {
+            font-size: 3.5rem;
+            font-weight: bold;
+            font-family: monospace;
+            color: #00ff88;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="countdown-container">
+        <h1>SURPRISE DROP: Sprawozdanie_8 + Sprawozdanie_10</h1>
+        <div id="timer">00:00</div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            
+            const target = new Date();
+            target.setHours(21, 45, 0, 0);
+
+            const difference = target.getTime() - now.getTime();
+
+            if (difference <= 0) {
+                document.getElementById('timer').innerText = "Time's up!";
+                document.getElementById('timer').style.color = "#ff4444";
+                clearInterval(intervalId);
+                return;
+            }
+
+            const totalSeconds = Math.floor(difference / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+
+            const formatTarget = (num) => String(num).padStart(2, '0');
+
+            document.getElementById('timer').innerText = 
+                `${formatTarget(minutes)}:${formatTarget(seconds)}`;
+        }
+
+        updateCountdown();
+        const intervalId = setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
+</html>
