@@ -58,8 +58,6 @@
             const difference = target.getTime() - now.getTime();
 
             if (difference <= 0) {
-                document.getElementById('timer').innerText = "Time's up!";
-                document.getElementById('timer').style.color = "#ff4444";
                 clearInterval(intervalId);
                 return;
             }
